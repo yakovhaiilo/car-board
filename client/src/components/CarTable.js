@@ -5,7 +5,7 @@ function CarTable (props){
   return(
       <div >
         
-          {props.cars.length ?
+          {props.cars.length?
            <Table style={{ width: "80vw", margin: "auto" }}>
                     <TableHead>
                         <TableRow>
