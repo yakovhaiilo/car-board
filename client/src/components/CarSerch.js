@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CarTable from "./CarTable";
-import {FormControl,Select,MenuItem,InputLabel,} from "@material-ui/core";
+import { FormControl, Select, MenuItem, InputLabel } from "@material-ui/core";
 import axios from "axios";
 
 function CarSerch() {
@@ -9,28 +9,28 @@ function CarSerch() {
   const [carModel, setCarModel] = useState("");
 
   async function getNewCars() {
-   await axios.get("/cars/curentYear")
-      .then((response) => {
-        setCars(response.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    const response = await axios.get("/cars/curentYear");
+    try {
+      setCars(response.data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function getfilterdCars() {
-      await axios.get("/cars/filter", {
-        params: {
-          modelName: carModel,
-          modelYear: carYear,
-        },
-      })
-      .then((response) => {
+    const response = await axios.get("/cars/filter", {
+      params: {
+        modelName: carModel,
+        modelYear: carYear,
+      },
+    });
+    try {
+      if (response.status === 200) {
         setCars(response.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function CarSerch() {
           e.preventDefault();
         }}
         style={{
-          width: '50% auto',
+          width: "50% auto",
           display: "flex",
           justifyContent: "space-around",
         }}
@@ -93,7 +93,7 @@ function CarSerch() {
           </Select>
         </FormControl>
       </form>
-      <CarTable cars = {cars} />
+      <CarTable cars={cars} />
     </div>
   );
 }
