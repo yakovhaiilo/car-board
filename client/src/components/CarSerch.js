@@ -50,8 +50,9 @@ function CarSerch() {
           e.preventDefault();
         }}
         style={{
+          width: '50% auto',
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
         }}
       >
         <FormControl>

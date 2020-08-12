@@ -10,8 +10,7 @@ app.get("/cars/curentYear", (req, res) => {
 
 app.get("/cars/filter", (req, res) => {
     const query = req.query;
-    console.log(query)
-    const filterdCars =  carsModule.filterd(query,cars);
+    const filterdCars =  carsModule.filterByQuery(query,cars);
     res.status(200).send(filterdCars);
 });
 

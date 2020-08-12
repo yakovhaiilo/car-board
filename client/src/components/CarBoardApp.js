@@ -23,16 +23,7 @@ function CarBoardApp() {
              <Typography color = 'inherit'> car board </Typography>
          </Toolbar>
       </AppBar>
-      <Grid container >
-        <Grid item xs ={11} md = {8} lg = {6} style = {{
-      padding: 40,
-      margin:40,
-      height: '20vh'
-    }} >
         <CarSerch/>
-      </Grid>
-      </Grid>
-     
     </Paper>
   );
 }

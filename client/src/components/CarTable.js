@@ -6,7 +6,7 @@ function CarTable (props){
       <div >
         
           {props.cars.length ?
-           <Table style={{ width: "85vw", margin: "auto" }}>
+           <Table style={{ width: "80vw", margin: "auto" }}>
                     <TableHead>
                         <TableRow>
                             <TableCell><b></b></TableCell>
