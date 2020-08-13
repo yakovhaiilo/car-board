@@ -8,37 +8,37 @@ function CarSerch() {
   const [carYear, setCarYear] = useState("");
   const [carModel, setCarModel] = useState("");
 
-  async function getNewCars() {
-    const response = await axios.get("/cars/curentYear");
-    try {
-      setCars(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function getfilterdCars() {
-    const response = await axios.get("/cars/filter", {
-      params: {
-        modelName: carModel,
-        modelYear: carYear,
-      },
-    });
-    try {
-      if (response.status === 200) {
-        setCars(response.data);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   useEffect(() => {
+    async function getNewCars() {
+      const response = await axios.get("/cars/curentYear");
+      try {
+        if (response.status === 200) {
+          setCars(response.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
     getNewCars();
   }, []);
 
   useEffect(() => {
     if (carModel !== "" || carYear !== "") {
+      async function getfilterdCars() {
+        const response = await axios.get("/cars/filter", {
+          params: {
+            modelName: carModel,
+            modelYear: carYear,
+          },
+        });
+        try {
+          if (response.status === 200) {
+            setCars(response.data);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
       getfilterdCars();
     }
   }, [carModel, carYear]);

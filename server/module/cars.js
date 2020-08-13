@@ -3,7 +3,7 @@ module.exports = {
     return array.filter((a) => new Date().getFullYear() == Number(a.modelYear));
   },
 
-  filterByQuery: function (query, array) {
+  filterByQuery: (query, array) => {
     let cars = [];
     if (query.modelName && !query.modelYear) {
       cars = array.filter((a) => query.modelName === a.modelName);

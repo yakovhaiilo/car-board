@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableHead, TableRow, TableBody, TableCell  } from '@material-ui/core';
+import {Table, TableHead, TableRow, TableBody, TableCell} from '@material-ui/core';
 
 function CarTable (props){
   return(
@@ -10,9 +10,9 @@ function CarTable (props){
                     <TableHead>
                         <TableRow>
                             <TableCell><b></b></TableCell>
-                            <TableCell><b> Model </b></TableCell>
-                            <TableCell><b>Price </b></TableCell>
-                            <TableCell><b>Year </b></TableCell> 
+                            <TableCell><b>Name</b></TableCell>
+                            <TableCell><b>Price</b></TableCell>
+                            <TableCell><b>Year</b></TableCell> 
                         </TableRow>
                     </TableHead>
                     <TableBody>

@@ -9,11 +9,10 @@ app.get("/cars/curentYear", (req, res) => {
 });
 
 app.get("/cars/filter", (req, res) => {
-    const query = req.query;
-    const filterdCars =  carsModule.filterByQuery(query,cars);
-    res.status(200).send(filterdCars);
+  const query = req.query;
+  const filterdCars = carsModule.filterByQuery(query, cars);
+  res.status(200).send(filterdCars);
 });
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log("Server is up on port: " + PORT));
