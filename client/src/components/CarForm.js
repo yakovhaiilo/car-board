@@ -61,7 +61,7 @@ function CarSerch() {
             Model{" "}
           </InputLabel>
           <Select
-            value = {carModel}
+            value={carModel}
             onChange={(e) => setCarModel(e.target.value)}
           >
             <MenuItem value="">
@@ -78,10 +78,7 @@ function CarSerch() {
             {" "}
             Year{" "}
           </InputLabel>
-          <Select
-            value = {carYear}
-            onChange={(e) => setCarYear(e.target.value)}
-          >
+          <Select value={carYear} onChange={(e) => setCarYear(e.target.value)}>
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
