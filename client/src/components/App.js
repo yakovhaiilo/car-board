@@ -1,13 +1,15 @@
 import React from "react";
-
-import CarBoardApp from './CarBoardApp'
+import CarSearchBoard from './CarSearchBoard/CarSearchBoard';
+import CarForm from "./CarForm/CarForm";
 
 
 function App () {
   return(<div className = 'App'>
-             <CarBoardApp/>
+             <CarSearchBoard />
+             <CarForm />     
         </div>
   ) 
 }
 
 export default App;
+

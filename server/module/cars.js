@@ -3,17 +3,17 @@ module.exports = {
     return array.filter((a) => new Date().getFullYear() == Number(a.modelYear));
   },
 
-  filterByQuery: (query, array) => {
-    let cars = [];
+  filterByQuery: (query, cars) => {
     if (query.modelName && !query.modelYear) {
-      cars = array.filter((a) => query.modelName === a.modelName);
+      return cars.filter((car) => query.modelName === car.modelName);
     }
-    if (!query.modelName && query.modelYear) {
-      cars = array.filter((a) => query.modelYear === a.modelYear);
+    else if (!query.modelName && query.modelYear) {
+      return cars.filter((car) => query.modelYear === car.modelYear);
     }
-    if (query.modelName && query.modelYear) {
-      cars = array.filter((a) => query.modelName === a.modelName && query.modelYear === a.modelYear);
-    }
-    return cars;
-  },
+    else if (query.modelName && query.modelYear) {
+      return cars.filter((car) =>
+       query.modelName === car.modelName &&
+       query.modelYear === car.modelYear);
+    } 
+  }
 };

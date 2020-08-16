@@ -1,0 +1,7 @@
+
+.CarForm form {   
+    width: 50% auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px 30px 50px;    
+}
