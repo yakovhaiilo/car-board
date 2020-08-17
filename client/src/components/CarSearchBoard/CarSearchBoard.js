@@ -1,5 +1,6 @@
 import React from "react";
 import { Toolbar, AppBar, Paper, Typography } from "@material-ui/core";
+import CarForm from "../CarForm/CarForm";
 
 function CarSearchBoard() {
   return (
@@ -11,6 +12,7 @@ function CarSearchBoard() {
         </Toolbar>
       </AppBar>
     </Paper>
+    <CarForm />  
     </div>
   );
 }
