@@ -1,8 +1,9 @@
 import React from "react";
 import { Toolbar, AppBar, Paper, Typography } from "@material-ui/core";
-import CarForm from "../CarForm/CarForm";
+import { Link } from "react-router-dom";
 
-function CarSearchBoard() {
+
+function NavBar() {
   return (
     <div>
     <Paper elevation={0}>
@@ -12,9 +13,8 @@ function CarSearchBoard() {
         </Toolbar>
       </AppBar>
     </Paper>
-    <CarForm />  
     </div>
   );
 }
 
-export default CarSearchBoard;
+export default NavBar;

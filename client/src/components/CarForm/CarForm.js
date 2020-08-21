@@ -9,8 +9,8 @@ function CarForm() {
   const [carsList, setCarsList] = useState([]);
   const [carYear, setCarYear] = useState("");
   const [carModel, setCarModel] = useState("");
-  const carYears = ['2020','2019','2018','2017','2016']
-  const carNames = ['mazda','ford','seat','renault']
+  const carYears = ['2020','2019','2018','2017','2016'];
+  const carNames = ['mazda','ford','seat','renault'];
 
   useEffect(() => {
     async function getNewCars() {

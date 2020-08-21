@@ -1,68 +1,77 @@
-require('dotenv').config();
-const express = require("express");
-const cars = require("./api/api.json");
-const carsModule = require("./module/cars");
-const bodyParser = require('body-parser');
-const mongoose = require("mongoose");
-const encrypt = require("mongoose-encryption");
+const express = require('express');
 const app = express();
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
+dotenv.config();
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/userDB",{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/carsBoardDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}, 
+()=>{
+  console.log("conect to db")
+}
+);
 
-const userSchema = new mongoose.Schema ({
-  email: String,
-  password: String
-});
+// routes 
+const authRoute = require('./routes/auth');
+const carsRoute = require('./routes/cars');
 
-console.log( process.env.SECRET )
-userSchema.plugin(encrypt, {secret: process.env.SECRET , encryptedFields:["password"] });
-
-const User = new mongoose.model("User", userSchema);
-
-
-app.get("/cars/curentYear", (req, res) => {
-  const newCars = carsModule.filterByCurentYear(cars);
-  res.status(200).send(newCars);
-});
-
-app.get("/cars/filter", (req, res) => {
-  const query = req.query;
-  const filterdCars = carsModule.filterByQuery(query, cars);
-  res.status(200).send(filterdCars);
-});
-
-app.post('/register' , (req,res) => {
-  const newUser = new User({
-  email: req.body.userName,
-  password: req.body.userPassword
-  });
-   console.log(newUser)
-  newUser.save(function(err){
-    if(err) console.log(err)
-    else{
-      console.log("register sucsses")
-    }
-  });  
-});
+app.use('/api/user', authRoute);
+app.use('/cars', carsRoute);
 
 
-app.post('/login' , (req,res) => {
-  const {userName, userPassword}  = req.body;
-  // console.log(userName,userPassword);
-  User.findOne({email:userName},function(err,fondUser){
-    if(err){
-      console.log(err);
-    } else{
-      if(fondUser){
-         if (fondUser.password === userPassword){
-           console.log("login sucses")
-         }
-      }
-    }
-  });
-});
+// feacbook strategy 
+
+// const FacebookStrategy = require('passport-facebook');
+// const passport = require('passport');
+// const cors = require('cors');
+// const User = require("./module/user");
+// let user = {}
+
+
+// passport.serializeUser((user,cb) =>{
+//   cb(null,user)
+// })
+
+// passport.deserializeUser((user,cb) =>{
+// cb(null,user)
+// })
+
+
+// passport.use(new FacebookStrategy({
+//   clientID: '3668461106539952',
+//   clientSecret: '4004706a8b21784539f87c2425f1eab2',
+//   callbackURL: ""
+// }, (accessToken, refreshToken, profile, done) =>{
+//   console.log(profile);
+//   user = {...profile};
+//   return cb(null,profile);
+// }
+// ));
+
+// app.use(cors());
+// app.use(passport.initialize());
+
+// app.get("/auth/facebook", passport.authenticate("facebook"));
+// app.get("aute/facebook/callback",
+// passport.authenticate("facebook"),
+// (req,res)=>{
+//   res.redirect("/login")
+// })
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log("Server is up on port: " + PORT));
+
+
+
+// function(accessToken, refreshToken, profile, done) {
+//   User.findOrCreate({facebookId: user._id}, function(err, user) {
+//     if (err) { return done(err); }
+//     done(null, user);
+//   });
