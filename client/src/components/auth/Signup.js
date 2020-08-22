@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Layout from "../../core/Layout";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,8 +11,9 @@ const Signup = () => {
     email: "yakov@gmail.com",
     password: "rrrrrr",
   });
-
-  const { name, email, password } = values;
+ 
+  const { name, email, password, redirect } = values;
+  console.log(redirect);
 
   const handleChange = (event) => {
     console.log(event.target.value);
@@ -27,13 +28,10 @@ const Signup = () => {
       data: { name, email, password }
     })
       .then((response) => {
-        console.log('SIGNUP SUCCESS', response);
-        setValues({ ...values, name: "", email: "", password: "" });
-        toast.success(response.data.success);
+        setValues({ ...values, name: "", email: "", password: "", redirect:true });
       })
       .catch((error) => {
         console.log('SIGNUP ERROR', error.response.data);
-        setValues({ ...values, buttonText: "Submit" });
         toast.error(error.response.data.error);
       });
   };
@@ -85,6 +83,7 @@ const Signup = () => {
     <Layout>
       <div className="col-md-6 offset-md-3">
         <ToastContainer />
+        {redirect ? <Redirect to='/signin'/> : null }
         <h1 className="p-5 text-center">Signup</h1>
         {signupForm()}
       </div>

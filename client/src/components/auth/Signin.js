@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-// import { Link, Redirect } from "react-router-dom";
 import Layout from "../../core/Layout";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import Facebook from './Facebook';
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -14,7 +14,6 @@ const Signin = () => {
   const { email, password } = values;
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
@@ -27,10 +26,13 @@ const Signin = () => {
       data: {email, password }
     })
       .then((response) => {
-        console.log('SIGNIN SUCCESS', response);
-        // save response user / token  local storage '
+        const {user,success,token} = response.data;
+        localStorage.setItem("name", JSON.stringify(user.name));
+        localStorage.setItem("email", JSON.stringify(user.email));
+        localStorage.setItem("_id", JSON.stringify(user._id));
+        localStorage.setItem("token", JSON.stringify(token));
         setValues({ ...values,  email: "", password: "" });
-        toast.success(response.data.success);
+        toast.success(success);
       })
       .catch((error) => {
         console.log('SIGNIN ERROR', error.response.data);
@@ -74,6 +76,7 @@ const Signin = () => {
       <div className="col-md-6 offset-md-3">
         <ToastContainer />
         <h1 className="p-5 text-center">Signin</h1>
+        <Facebook />
         {signinForm()}
       </div>
     </Layout>
