@@ -2,7 +2,7 @@ import React from "react";
 import {Table, TableHead, TableRow, TableBody, TableCell} from '@material-ui/core';
 
 
-function CarTable (props){
+function CarsList (props){
     const {carsList} = props;
   return(
       <div className = "CarTable">
@@ -37,4 +37,4 @@ function CarTable (props){
 }
 
 
-export default CarTable;
+export default CarsList;

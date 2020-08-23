@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import App from '../components/App';
-import Signup from '../components/auth/Signup';
-import Signin from '../components/auth/Signin';
-import Signout from '../components/auth/Signout';
-import Cars from '../components/CarForm/CarForm';
+import App from '../app/App';
+import Signup from '../auth/Signup';
+import Signin from '../auth/Signin';
+import Signout from '../auth/Signout';
+import Cars from '../cars/CarForm';
 
 
 const Routes = () => {
