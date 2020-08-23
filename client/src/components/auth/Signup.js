@@ -34,7 +34,6 @@ const Signup = () => {
   };
 
   const clickSubmit = (e) => {
-    console.log(name,email,password)
     e.preventDefault();
     axios({
       method: "POST",

@@ -3,10 +3,17 @@ const User = require("../module/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const fetch = require('node-fetch');
+const {signupValidation, signinValidation} = require('../validation/auth');
+
 
 router.post("/signup", async (req, res) => {
   const { email, password, name } = req.body;
 
+  const {error} = signupValidation(req.body);
+  if(error){
+    return res.status(400).json({ error: error.details[0].message });
+  }
+ 
   const userExist = await User.findOne({ email });
   if (userExist) {
     return res.status(400).json({ error: "Email is taken" });
@@ -32,11 +39,16 @@ router.post("/signup", async (req, res) => {
 // ----------------------------------------------------------------------
 router.post("/signin", async (req, res) => {
 
+  
+  const {error} = signinValidation(req.body);
+  if(error){
+    return res.status(400).json({ error: error.details[0].message });
+  }
+
   const user = await User.findOne({ email: req.body.email });
   if (!user){
     return res.status(400).json({ error: "Email not found" });
   }
-    
 
   const validPass = await bcrypt.compare(req.body.password, user.password);
   if (!validPass){
