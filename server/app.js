@@ -9,7 +9,7 @@ dotenv.config();
 app.use(bodyParser.json());
 
 mongoose.connect(
-  "mongodb://localhost:27017/carsBoardDB",
+   process.env.DB_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
