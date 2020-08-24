@@ -1,0 +1,24 @@
+{
+  "name": "carSearchEngine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server && npm start",
+    "server-install":"cd server && npm install",
+    "client-install":"cd client && npm install",
+    "client-build":"cd client && npm run build",
+    "heroku-postbuild":"npm run server-install && npm run client-install && npm run client-build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yakovhaiilo/car-board.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yakovhaiilo/car-board/issues"
+  },
+  "homepage": "https://github.com/yakovhaiilo/car-board#readme"
+}
