@@ -1,6 +1,5 @@
 import cookie from 'js-cookie';
 
-// set token in cookie
 export const setCookie = (key, value) => {
     if (window !== 'undefined') {
         cookie.set(key, value, {
@@ -8,7 +7,7 @@ export const setCookie = (key, value) => {
         });
     }
 };
-// remove from cookie
+
 export const removeCookie = key => {
     if (window !== 'undefined') {
         cookie.remove(key, {
@@ -17,31 +16,31 @@ export const removeCookie = key => {
     }
 };
 
-// Later when we need to make request to server with token
+
 export const getCookie = key => {
     if (window !== 'undefined') {
         return cookie.get(key);
     }
 };
-// set in localstorage
+
 export const setLocalStorage = (key, value) => {
     if (window !== 'undefined') {
         localStorage.setItem(key, JSON.stringify(value));
     }
 };
-// remove from localstorage
+
 export const removeLocalStorage = key => {
     if (window !== 'undefined') {
         localStorage.removeItem(key);
     }
 };
-// authenticate user when signin
+
 export const authenticate = (response, next) => {
     setCookie('token', response.data.token);
     setLocalStorage('user', response.data.user);
     next();
 };
-// access user info from localstorage
+
 export const isAuth = () => {
     if (window !== 'undefined') {
         const cookieChecked = getCookie('token');
