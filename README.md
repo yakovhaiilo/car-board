@@ -10,7 +10,7 @@ live link https://car-board-wix.herokuapp.com/cars
  
  # How to run the app?
  
- cd client npm start 
+ cd client npm start <br>
  cd server npm start 
  cd server npm run dev \ Will run both server and client
  
