@@ -17,7 +17,7 @@ export const removeCookie = key => {
     }
 };
 
-//  when we need to make request to server with token
+// Later when we need to make request to server with token
 export const getCookie = key => {
     if (window !== 'undefined') {
         return cookie.get(key);

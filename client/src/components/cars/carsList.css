@@ -1,0 +1,17 @@
+.CarsList .massage {
+    color: rgb(228, 69, 69);
+    text-align: center;
+}
+@media  (max-width: 500px){   
+    .CarsList table {
+        border-collapse: separate;
+        border-spacing: 20px 15px;
+    }
+    .CarsList  thead {
+        display: none; 
+       
+    }
+    .CarsList  td {   
+    display: block;
+    }
+}

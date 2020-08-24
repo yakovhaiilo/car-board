@@ -21,7 +21,7 @@ const authRoute = require('./routes/auth');
 const carsRoute = require('./routes/cars');
 
 app.use('/api', authRoute);
-app.use('/cars', carsRoute);
+app.use('/api', carsRoute);
 
 
 const PORT = process.env.PORT || 5000;

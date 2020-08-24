@@ -11,7 +11,7 @@ const Layout = ({ children, match,history }) => {
     }
   };
   const nav = () => (
-    <ul className="nav nav-tabs bg-primary">
+    <ul className="nav  bg-primary">
       <li className="nav-item">
         <Link to="/" className="nav-link" style={isActive("/")}>
           Home
@@ -64,7 +64,7 @@ const Layout = ({ children, match,history }) => {
   return (
     <Fragment>
       {nav()}
-      <div className="container">{children}</div>
+      <div>{children}</div>
     </Fragment>
   );
 };

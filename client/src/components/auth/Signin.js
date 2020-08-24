@@ -11,7 +11,8 @@ import {
   Avatar,
   Button,
   TextField,
-  Typography
+  Typography,
+  Container
 } from "@material-ui/core";
 import useStyles from "./useStyle";
 
@@ -103,12 +104,14 @@ const Signin = ({history}) => {
 
   return (
     <Layout>
+      <Container>
       <div className="col-md-6 offset-md-3">
         {isAuth() ? <Redirect to='/cars'/> : null } 
         <ToastContainer />
         {signinForm()}
         <Facebook setFbUser={setFbUser} />
       </div>
+      </Container>
     </Layout>
   );
 };

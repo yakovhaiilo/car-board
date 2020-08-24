@@ -1,55 +1,56 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './CarForm.css';
-import { FormControl, Select, MenuItem, InputLabel } from "@material-ui/core";
+import './carFilterBar.css';
+import { FormControl, Select, MenuItem, InputLabel,Container} from "@material-ui/core";
 import Layout from "../core/Layout";
 import CarsList from "./CarsList";
 
 
-function CarForm() {
-  const [list, setList] = useState([]);
+function CarFilterBar() {
+  const [listToDisplay, setListToDisplay] = useState([]);
+  const [isloading,setisloading]= useState(false);
   const [carYear, setCarYear] = useState("");
   const [carModel, setCarModel] = useState("");
   const carYears = ['2020','2019','2018','2017','2016'];
   const carNames = ['mazda','ford','seat','renault'];
 
   useEffect(() => {
-    async function getNewCars() {
-      const response = await axios.get("/cars/curentYear");
-      try {
-        if (response.status === 200) {
-          setList(response.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getNewCars();
+    setisloading(true)
+     axios.get('api/allCars').then((response) =>{
+       if(response.status === 200){
+         console.log(response.data)
+         setListToDisplay(response.data)
+         setisloading(false);
+       }
+     }).catch((error=>{
+         console.log(error);
+     }))
   }, []);
 
   useEffect(() => {
-    if (carModel || carYear) {
-      async function getfilterdCars() {
-        const response = await axios.get("/cars/filter", {
-          params: {
-            modelName: carModel,
-            modelYear: carYear,
-          },
-        });
-        try {
-          if (response.status === 200) {
-            setList(response.data);
-          }
-        } catch (err) {
-          console.log(err);
+    if(carModel || carYear){
+      setisloading(true)
+      axios.get('api/filter',{
+        params:{ 
+        modelName: carModel,
+        modelYear: carYear,
+      }})
+        .then((response) =>{
+        if(response.status === 200){
+          console.log(response.data)
+          setListToDisplay(response.data)
+          setisloading(false)
         }
-      }
-      getfilterdCars();
+      }).catch((error=>{
+          console.log(error);
+      }));
     }
-  }, [carModel, carYear]);
+  }, [carModel,carYear]);
+ 
 
   return (
     <Layout>
+      <Container>
     <div className = "CarForm">
       <form onSubmit={(e) => { e.preventDefault(); }}>
         <FormControl>
@@ -70,9 +71,11 @@ function CarForm() {
         </FormControl>
       </form>
     </div>
-    <CarsList carsList = {list} />
+    <CarsList carsList = {listToDisplay} isloading={isloading} />
+    </Container>
     </Layout>
   );
 }
 
-export default CarForm;
+export default CarFilterBar;
+

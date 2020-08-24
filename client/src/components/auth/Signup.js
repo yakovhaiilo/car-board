@@ -5,13 +5,12 @@ import {
   Avatar,
   Button,
   TextField,
-  Typography
+  Typography,
+  Container
 } from "@material-ui/core";
 import useStyles from "./useStyle";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-
-
 
 import Layout from "../core/Layout";
 import {isAuth} from './halpers';
@@ -41,12 +40,10 @@ const Signup = () => {
       data: { name, email, password }
     })
       .then((response) => {
-        console.log(response)
         setValues({ ...values, name: "", email: "", password: ""});
         toast.success(response.data.success)
       })
       .catch((error) => {
-        console.log(error)
         toast.error(error.response.data.error);
       });
   };
@@ -116,11 +113,13 @@ const Signup = () => {
 
   return (
     <Layout>
+      <Container>
       <div className="col-md-6 offset-md-3">
         <ToastContainer />
         {isAuth() ? <Redirect to='/cars'/> : null } 
         {signupForm()}
       </div>
+      </Container>
     </Layout>
   );
 };
