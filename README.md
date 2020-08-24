@@ -4,9 +4,9 @@ live link https://car-board-wix.herokuapp.com/cars
 
 # Introduction
 
- MERN stack login register system,
- You can also log in with Facebook
- Vehicle page Search option by year and model.
+ MERN stack login register system
+ You can also log in with Facebook.
+ cars page Search option by year and model.
  
  # How to run the app?
  
