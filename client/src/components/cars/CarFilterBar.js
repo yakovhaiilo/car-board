@@ -4,6 +4,9 @@ import './carFilterBar.css';
 import { FormControl, Select, MenuItem, InputLabel,Container} from "@material-ui/core";
 import Layout from "../core/Layout";
 import CarsList from "./CarsList";
+import {isAuth} from '../auth/halpers';
+import { Redirect } from "react-router-dom";
+
 
 
 function CarFilterBar() {
@@ -48,6 +51,7 @@ function CarFilterBar() {
 
   return (
     <Layout>
+        {!isAuth() ? <Redirect to='/signup'/> : null } 
       <Container>
     <div className = "CarForm">
       <form onSubmit={(e) => { e.preventDefault(); }}>
