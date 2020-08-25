@@ -18,8 +18,7 @@ function CarFilterBar() {
     setisloading(true)
      axios.get('api/allCars').then((response) =>{
        if(response.status === 200){
-         console.log(response.data)
-         setListToDisplay(response.data)
+         setListToDisplay(response.data);
          setisloading(false);
        }
      }).catch((error=>{
@@ -37,9 +36,8 @@ function CarFilterBar() {
       }})
         .then((response) =>{
         if(response.status === 200){
-          console.log(response.data)
-          setListToDisplay(response.data)
-          setisloading(false)
+          setListToDisplay(response.data);
+          setisloading(false);
         }
       }).catch((error=>{
           console.log(error);
