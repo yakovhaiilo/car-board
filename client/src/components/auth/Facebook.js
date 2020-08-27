@@ -23,6 +23,8 @@ const Facebook = ({setFbUser}) => {
         appId='3668461106539952'
         autoLoad={false}
         callback={responseFacebook}
+        disableMobileRedirect={true}
+        isMobile={false}
         render={(renderProps) => (
           <button
             onClick={renderProps.onClick}
